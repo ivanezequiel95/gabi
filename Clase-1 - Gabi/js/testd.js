@@ -1,1 +1,0 @@
-funca putofunca puto

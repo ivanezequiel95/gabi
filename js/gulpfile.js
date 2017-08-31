@@ -11,7 +11,7 @@ gulp.task("server", function(){
         node.kill();
     }
 
-    node = spawn("node", ["index.js"], {stdio: "inherit"});
+    node = spawn("node", ["app.js"], {stdio: "inherit"});
 });
 
 
@@ -29,13 +29,13 @@ gulp.task("default", function()
     //uglifi comprime el archivo
     //
 
-    gulp.watch(["index.js","./scripts/**/*.js"], () => {
+    gulp.watch(["app.js","./script/*.js"], () => {
          gulp.run("server");
     });
 });
 
 
-gulp.task("serve", () => {
+/*gulp.task("serve", () => {
     gulp.src("app")
         .pipe(server({
             port:8100,
@@ -43,7 +43,7 @@ gulp.task("serve", () => {
             livereload: true,
             open: true
         }));
-});
+});*/
 /*
 //Precondicion es tarea 1  y tarea 2 antes de ejucutarse la default
 gulp.task("default",["tarea1","tarea2"], function(){

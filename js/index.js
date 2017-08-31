@@ -58,23 +58,24 @@ const server = http.createServer((req, res) => {
     if(req.method === "GET") {
             fs.stat(file,  (err, stat) => { 
                 if(err) {
+                    res.write("<h1>404 not found</h1>")
                     res.end();
                     return;
                 }
                 if(stat.isFile()) {
                     fs.readFile(file, (err, data) => {
                         if(err) {
-                            console.log("ERROR: ",err);
+                            res.end();
                             return;
                         }
                         res.write(data);
                         res.end();
                     });
+                } else {
+                    res.write("<h1>404 not found</h1>")
+                    res.end();
                 }
             });
-    } else {
-        res.write("<h1>404 not found</h1>")
-        res.end();
     }
         
 });
