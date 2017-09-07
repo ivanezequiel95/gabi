@@ -31,5 +31,4 @@ router.route("/listado")
                 res.render("ERROR: " + err)
            });
     })
-   
 

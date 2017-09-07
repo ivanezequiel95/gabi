@@ -18,7 +18,7 @@ gulp.task("server", function(){
 gulp.task("default", function()
 {
     //gulp.run
-   // gulp.run("server");
+    gulp.run("server");
 
     //gulp.src("./scripts/**/*.js")
    /* .pipe(concat("all.js"))
@@ -29,7 +29,7 @@ gulp.task("default", function()
     //uglifi comprime el archivo
     //
 
-    gulp.watch(["app.js","./script/*.js"], () => {
+    gulp.watch(["app.js","../js/**/*.js"], () => {
          gulp.run("server");
     });
 });
