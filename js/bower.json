@@ -1,0 +1,17 @@
+{
+  "name": "js",
+  "description": "",
+  "main": "app.js",
+  "license": "ISC",
+  "homepage": "https://github.com/ivanezequiel95/gabi",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

@@ -1,19 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const router = express.Router();
+const rutaData = require('./rutas/data');
+const nunjucks = require('nunjucks');
 
-router.use(bodyParser.urlencoded({extended : false}));
-router.use(bodyParser.json());
-router.use('/estatico', express.static("./app"))
+app.set('view engine', 'html');
+app.set('views', './views');
 
-router.route("/funca")
-    .get((req, res) => {
-        res.json("es un get")
-    })
-    .post((req, res) => {
-        res.json(req.body);
-    });
+var env = nunjucks.configure('views', {
+    autoescape: true,
+    express: app
+});
 
-app.use(router);
+app.use('/data', rutaData);
 app.listen(3000);
