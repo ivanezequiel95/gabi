@@ -10,12 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "compression": "^1.7.0",
     "concat": "1.0.3",
+    "cors": "^2.8.4",
     "express": "4.15.4",
     "gulp": "3.9.1",
     "gulp-concat": "2.6.1",
     "gulp-server-livereload": "1.9.2",
     "gulp-uglify": "3.0.0",
+    "mongodb": "^2.2.31",
     "nunjucks": "^3.0.1",
     "uglify": "0.1.5"
   }

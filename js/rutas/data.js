@@ -6,8 +6,6 @@ const router = express.Router({
 });
 const apiPersonas = require('../db/personas');
 
-router.use(bodyParser.urlencoded({extended : false}));
-router.use(bodyParser.json());
 router.use('/static', express.static("./static"))
 
 module.exports = router;
@@ -23,9 +21,9 @@ router.route("/")
 router.route("/listado")
     .get((req, res) => {
         //buscar data y devolverla
-        apiPersonas.getAllPersonas()
+        apiPersonas.getAllPersonas(req.db)
            .then((data) => {
-                res.render('personas', { personas: JSON.parse(data) });
+                res.render('personas', { personas: data });
            })
            .catch((err) => {
                 res.render("ERROR: " + err)
