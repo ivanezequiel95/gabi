@@ -30,6 +30,7 @@ MongoClient.connect('mongodb://localhost:27017/midb', function(err, database) {
   app.use(bodyParser.urlencoded({extended : false}));
   app.use(bodyParser.json());
   app.use(cors());
+  app.use(express.static("./public"));
   app.use(compression());
   app.use('/data', rutaData);
   app.listen(3000);

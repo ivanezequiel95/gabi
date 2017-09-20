@@ -1,0 +1,16 @@
+<html>
+<head>
+    <script src="client.js"></script>
+</head>
+
+<body>
+    <input type="button" value="InsertarPOST" onclick="enviarDatos('http://127.0.0.1:3000/data/personas/save','POST','nombre','rodrigo',getPersonas)"
+    />
+
+    <input type="button" value="InsertarGET" onclick="enviarDatos('http://127.0.0.1:3000/data/personas/save/gabi','get',null,'Gabi',getPersonas)"
+    />
+
+    <div id="resultados"></div>
+</body>
+
+</html>

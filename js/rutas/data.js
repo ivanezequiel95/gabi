@@ -22,11 +22,40 @@ router.route("/listado")
     .get((req, res) => {
         //buscar data y devolverla
         apiPersonas.getAllPersonas(req.db)
-           .then((data) => {
+            .then((data) => {
                 res.render('personas', { personas: data });
-           })
-           .catch((err) => {
+            })
+            .catch((err) => {
                 res.render("ERROR: " + err)
-           });
+            });
     })
+
+router.route("/personas/save")
+    .post((req, res) => {
+        //buscar data y devolverla
+        console.log("BODY", req.body)
+        apiPersonas.insert(req.db, req.body.nombre)
+            .then((data) => {
+                console.log(data)
+                res.send(data);
+            })
+            .catch((err) => {
+                console.log(err)
+                res.send("ERROR: " + err)
+            });
+    })
+router.route("/personas/save/:nombre")
+    .get((req, res) => {
+        //buscar data y devolverla
+        console.log("params", req.params)
+        apiPersonas.insert(req.db, req.params.nombre)
+            .then((data) => {
+                console.log(data)
+                res.send(data);
+            })
+            .catch((err) => {
+                console.log(err)
+                res.send("ERROR: " + err)
+            });
+    });
 
