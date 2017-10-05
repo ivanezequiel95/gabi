@@ -1,0 +1,45 @@
+<html>
+    <temple id="listaPersonasHtml">
+        <div id="container"></div>
+    </temple>
+    <script>
+        class personaTemplate extends HTMLElement {
+            static get observedAttributes() {
+                return ['personas']; 
+            }
+
+            constructor() {
+                super();
+                this.importDocument = document.querySelector("#importListado").import;
+            }
+
+            connectedCallback() {
+                this._shadowRoot = this.attachShadow({ mode: 'closed' });
+                const t = this.importDocument.getElementById("listaPersonasHtml");
+                const instace = t.cloneNode(true);
+                this._shadowRoot.appendChild(instace);
+            }
+
+            attributeChangedCallback(attrName, oldVal, newVal) {
+                if(attrName === 'personas') {
+                    this.agregarPersonas(JSON.parse(newVal));
+                }
+            }
+
+            disconnectedCallback() {
+                
+            }
+
+            agregarPersonas(personas)  {
+                personas.forEach((persona, index) => {
+                    debugger
+                        let personaElement = this.importDocument.createElement("p")
+                        personaElement.innerText = persona.id+ " " +persona.nombre + " " + persona.apellido;
+                        this.importDocument.getElementById("container").appendChild(personaElement);
+                })
+            }
+        }
+
+        window.customElements.define('lista-personas', personaTemplate);
+    </script>
+</html>

@@ -23,7 +23,7 @@ router.route("/listado")
         //buscar data y devolverla
         apiPersonas.getAllPersonas(req.db)
             .then((data) => {
-                res.render('personas', { personas: data });
+                res.render('personas', { personas: JSON.stringify(data) });
             })
             .catch((err) => {
                 res.render("ERROR: " + err)

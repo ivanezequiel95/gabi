@@ -1,13 +1,5 @@
-<script src="../custom.js"></script>
+<link rel="import" href="../custom.html" id="importListado">
 <div>
-
   <h1>PERSONAS</h1>
-  <!--{% for per in personas %}
-      <div>
-        <span>#{{ per.id }}<span>
-        <span>{{per.nombre}}<span>
-        <span>{{per.apellido}}<span>
-      </div>
-    {% endfor %}-->
-  <lista-personas personas="anda"></lista-personas>
+  <lista-personas personas="{{personas}}"></lista-personas>
 </div>

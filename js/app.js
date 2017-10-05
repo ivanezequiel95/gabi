@@ -16,8 +16,6 @@ var env = nunjucks.configure('views', {
     express: app
 });
 
-
-
 MongoClient.connect('mongodb://localhost:27017/midb', function(err, database) {
   if (err) {
     throw err;
