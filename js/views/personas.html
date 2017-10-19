@@ -1,5 +1,67 @@
+<script type="text/javascript">
+  var db;
+  function iniciarDb() {
+    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+    window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+    
+    if (!window.indexedDB) {
+      window.alert("Su navegador no soporta una versión estable de indexedDB.Tal y como las características no serán validas");
+    }
+    db = window.indexedDB.open("testdb", 2);
+
+    db.onupgradeneeded = function(event) {
+      db = event.target;
+      var objectStore = db.result.createObjectStore("personas", { keyPath: "legajo", autoIncrement: true, unique: true });
+    }
+  }
+
+  function cargar() {
+    let active = db.result;
+    let data = active.transaction(["personas"], "readwrite");
+    let personas = data.objectStore("personas");
+
+    let request = personas.add({
+      nombre: document.getElementById("nombre").value
+    })
+
+    request.onerror = (e) => {
+      alert(request.error.nombre + '\n\n' + request.error.message);
+    }
+
+    data.oncomplete = (e) => {
+        document.querySelector("#nombre").value = '';
+        document.getElementById("nombre").focus();
+     } 
+  }
+
+  function mostrar() {
+    let active = db.result;
+    let data = active.transaction(["personas"], "readwrite");
+    let personas = data.objectStore("personas");
+    let elements = [];
+
+    personas.openCursor().onsuccess = (e) => {
+      let result = e.target.result
+
+      if(result === null)
+        return;
+
+      elements.push(result.value);
+      result.continue();
+    }
+
+    data.oncomplete = (e) => {
+      console.log(elements);
+    } 
+  }
+</script>
 <link rel="import" href="../custom.html" id="importListado">
-<div>
+<div onload="iniciarDb();">
+  <input type="button" value="iniciar" onclick="iniciarDb();">
+  <input type="text" id="nombre">
+  <input type="button" value="guardar" onclick="cargar();">
+  <input type="button" value="mostrar" onclick="mostrar();">
   <h1>PERSONAS</h1>
   <lista-personas personas="{{personas}}"></lista-personas>
 </div>

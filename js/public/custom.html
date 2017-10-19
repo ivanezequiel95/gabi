@@ -32,7 +32,6 @@
 
             agregarPersonas(personas)  {
                 personas.forEach((persona, index) => {
-                    debugger
                         let personaElement = this.importDocument.createElement("p")
                         personaElement.innerText = persona.id+ " " +persona.nombre + " " + persona.apellido;
                         this.importDocument.getElementById("container").appendChild(personaElement);
