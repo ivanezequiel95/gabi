@@ -8,11 +8,20 @@
     if (!window.indexedDB) {
       window.alert("Su navegador no soporta una versión estable de indexedDB.Tal y como las características no serán validas");
     }
-    db = window.indexedDB.open("testdb", 2);
+    db = window.indexedDB.open("test", 1);
 
     db.onupgradeneeded = function(event) {
       db = event.target;
       var objectStore = db.result.createObjectStore("personas", { keyPath: "legajo", autoIncrement: true, unique: true });
+    }
+
+    db.onsuccess = (event) => {
+      db = event.target;
+      alert("APRETA CARGAR FORRO")
+    }
+
+    db.onerror = (event) => {
+      console.log(event)
     }
   }
 

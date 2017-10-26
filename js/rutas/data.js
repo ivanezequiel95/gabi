@@ -6,8 +6,6 @@ const router = express.Router({
 });
 const apiPersonas = require('../db/personas');
 
-router.use('/static', express.static("./static"))
-
 module.exports = router;
 
 router.route("/")

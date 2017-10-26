@@ -1,7 +1,18 @@
 <html>
 <head>
     <script src="client.js"></script>
-    <script src="custom.js"></script>    
+    <script>
+        let worker = new Worker("workers/miWW.js");
+
+        worker.addEventListener('message', (e) => {
+            console.log("Mensaje princiapl ",e.data);
+        });
+        function enviarMensaje() {
+            worker.postMessage("Gabi funca");
+        }
+
+        setTimeout(enviarMensaje, 3000)
+     </script>
 </head>
 
 <body>
